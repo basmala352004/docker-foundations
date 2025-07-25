@@ -12,7 +12,7 @@ Before you begin this lab, please ensure your development environment is set up 
 
 * **Docker Engine (Version 24.x or later):** This includes the Docker CLI.
 * **Docker Compose (Version 2 or later):**
-* **A Code Editor:** Such as Visual Studio Code, Notepad++, or Cursor.
+* **A Code Editor:** Such as Visual Studio Code.
 
 ## Lab Steps
 
@@ -38,7 +38,7 @@ This step focuses on organizing the project directory and populating it with the
     ```
 
 3.  **Populate `app/package.json`:**
-    Navigate into the `app` directory (`cd app`). Open `package.json` in your preferred code editor and **[TEAM MEMBER A: Paste your final `package.json` content here]**:
+    Navigate into the `app` directory (`cd app`). Open `package.json` in your preferred code editor:
 
     ```json
     # [PASTE YOUR FINAL PACKAGE.JSON CONTENT HERE]
@@ -46,7 +46,7 @@ This step focuses on organizing the project directory and populating it with the
     *(Save the file and close your editor.)*
 
 4.  **Populate `app/index.js`:**
-    While still in the `app` directory, open `index.js` in your code editor and **[TEAM MEMBER B: Paste your final `index.js` content here]**:
+    While still in the `app` directory, open `index.js` in your code editor:
 
     ```javascript
     # [PASTE YOUR FINAL INDEX.JS CONTENT HERE]
@@ -54,7 +54,7 @@ This step focuses on organizing the project directory and populating it with the
     *(Save the file and close your editor.)*
 
 5.  **Populate `Dockerfile` (for the Node.js app):**
-    Navigate back to the main `multi-container-lab` directory (`cd ..`). Open `Dockerfile` in your code editor and **[TEAM MEMBER C: Paste your final `Dockerfile` content here]**:
+    Navigate back to the main `multi-container-lab` directory (`cd ..`). Open `Dockerfile` in your code editor:
 
     ```dockerfile
     # [PASTE YOUR FINAL DOCKERFILE CONTENT HERE]
@@ -62,7 +62,7 @@ This step focuses on organizing the project directory and populating it with the
     *(Save the file and close your editor.)*
 
 6.  **Populate `docker-compose.yml`:**
-    Ensure you are in the main `multi-container-lab` directory. Open `docker-compose.yml` in your code editor and **[YOUR PART: Paste your final `docker-compose.yml` content here]**:
+    Ensure you are in the main `multi-container-lab` directory. Open `docker-compose.yml` in your code editor:
 
     ```yaml
     # [PASTE YOUR FINAL DOCKER-COMPOSE.YML CONTENT HERE]
