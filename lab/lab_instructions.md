@@ -2,27 +2,30 @@
 # Docker Compose Lab: Nginx + Postgres App
 
 ## Objective
-In this 20-minute lab, you will learn to deploy a simple multi-container application using Docker Compose. This app consists of an Nginx frontend and a PostgreSQL backend.
+In this lab, you will learn to deploy a simple multi-container application using Docker Compose. This app consists of an Nginx frontend and a PostgreSQL backend.
 
 ---
 
 ## Prerequisites
 - Docker & Docker Compose installed
 - Internet connection
-- Text editor or IDE (e.g., VS Code)
+- Ubuntu or Linux-based system
 
 ---
 
 ## Step-by-Step Instructions
-### 1. install Docker
+### 1. Install Docker and Docker Compose
 
 ```bash
-curl - fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh
+curl - fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 ```
 
 ### 2. Check version 
 ```bash
 docker --version
+docker compose version
+
 ```
 
 ### 3. Clone our repository 
@@ -48,6 +51,8 @@ docker ps
 ### 7. Verify Nginx Web Server
 Open your browser and go to: [http://localhost:8080](http://localhost:8080)
 
+OR: ( http://<your-vm-ip>:8080 if using a VM)
+
 ### 8. Clean Up
 ```bash
 docker-compose down -v
@@ -63,6 +68,4 @@ docker system prune -f
 - clean shutdown with system prune 
 
 ---
-
-## Duration
-Approximately **20 minutes**
+# it is supported with a screenshots in test.pdf file & the problem i faced and how to solve it if you had the same issue:) .
