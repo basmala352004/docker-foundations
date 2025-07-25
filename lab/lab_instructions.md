@@ -1,5 +1,5 @@
 
-# Docker Compose Lab: Nginx + Postgres App
+# 1) Docker Compose Lab: Nginx + Postgres App
 
 ## Objective
 In this lab, you will learn to deploy a simple multi-container application using Docker Compose. This app consists of an Nginx frontend and a PostgreSQL backend.
@@ -67,8 +67,14 @@ docker system prune -f
 - Use volumes and custom networks
 - clean shutdown with system prune
 
+it is supported with a screenshots in test.pdf file & the problem i faced and how to solve it if you had the same issue:) .
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Commands of hello-world.cast file 
+              
+                                                    
+                
+## 2) Commands of Hello-World.cast file 
 
 
 | CLI Flag             | Description                                                                  |
@@ -105,4 +111,4 @@ You can preview `hello-world.cast` files directly using an online web player:
 3. The terminal recording will play automatically
 
 ---
-# it is supported with a screenshots in test.pdf file & the problem i faced and how to solve it if you had the same issue:) .
+
