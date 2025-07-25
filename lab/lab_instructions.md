@@ -80,7 +80,7 @@ In this step, you will use Docker Compose to build the Node.js application image
     ```bash
     cd C:\path\to\your\multi-container-lab
     ```
-    *(**Important:** Replace `C:\path\to\your` with the actual path to your `multi-container-lab` folder on your system. And delete this line afterwards ew3y tensy)* 
+    *(**Important:** Replace `C:\path\to\your` with the actual path to your `multi-container-lab` folder on your system.)* 
 
 2.  **Build and start services:**
     Execute the following command to build your Node.js application image and start all defined services in detached mode (background). This may take a few minutes as Docker pulls base images and installs Node.js dependencies.
