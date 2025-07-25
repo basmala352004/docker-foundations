@@ -1,25 +1,54 @@
-Namespaces & Cgroups Overview
 
-Linux namespaces and cgroups are two foundational features that enable containerization by isolating and managing resources per process.
 
-Namespaces isolate system resources, allowing each process (or container) to have its own independent view of the system. This makes it possible to run multiple services on the same host without interference.
+## Namespaces & Cgroups Overview
 
-There are six major types of Linux namespaces:
+Linux **namespaces** and **control groups (cgroups)** are core kernel features that form the foundation of containerization. Together, they isolate processes and control resource usage, enabling secure and efficient multi-tenant environments.
 
-Mount (mnt): Isolates the set of mounted file systems.
+---
 
-PID: Provides each namespace with its own process ID space. PID 1 is the first process in that namespace.
+### Linux Namespaces
 
-User: Allows a process to have different user and group IDs. Processes can have root privileges inside their own user namespace without having root access on the host.
+**Namespaces** provide isolation by giving each process its own independent view of system resources. This makes it possible to run multiple containers or services on the same host without conflicts.
 
-Network (net): Gives a separate network stack with independent interfaces, routing tables, and firewall rules.
+#### The Six Major Namespace Types:
 
-IPC: Isolates interprocess communication mechanisms such as message queues and semaphores.
+| Namespace                             | Isolates                                  | Description                                                           |
+| ------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------- |
+| **mnt** (Mount)                       | File system mount points                  | Processes see only the file systems mounted in their namespace.       |
+| **pid** (Process ID)                  | Process IDs                               | Each namespace has its own PID 1, allowing separate process trees.    |
+| **user**                              | User and group IDs                        | Enables different UID/GID mappings, including root inside containers. |
+| **net** (Network)                     | Network interfaces & routing              | Each namespace has its own network stack: IPs, routes, ports.         |
+| **ipc** (Inter-Process Communication) | Semaphores, message queues, shared memory | Prevents IPC leaks across containers.                                 |
+| **uts** (UNIX Timesharing System)     | Hostname & domain name                    | Allows per-container host/domain names.                               |
 
-UTS: Enables different hostnames and domain names for each namespace.
+Namespaces improve isolation, security, and support containerized microservices.
 
-The key feature of namespaces is their ability to isolate processes from one another. This improves security, reduces the blast radius of failures, and supports microservice-based architectures.
+---
 
-Cgroups (Control Groups) complement namespaces by controlling and monitoring system resources. Cgroups v2, the latest version, introduces a unified hierarchy for managing all resources consistently. It offers improved delegation, simplified resource control, and more effective handling of memory and I/O.
+### Control Groups (cgroups v2)
 
-Together, namespaces and cgroups provide the essential building blocks for Linux containers. They allow for secure, isolated, and resource-managed environments, which are critical for running modern distributed applications.
+**Cgroups** limit and monitor resource usage (CPU, memory, I/O) for groups of processes.
+
+#### Key Features of Cgroups v2:
+
+* Unified resource hierarchy
+* Fine-grained control over all resource types
+* Better delegation and nesting support
+* Improved memory and I/O management
+
+Cgroups v2 ensures that no container can overuse system resources or starve others.
+
+---
+
+### Why It Matters
+
+Namespaces **isolate**, and cgroups **control**. Together, they:
+
+* Enable lightweight containers
+* Provide process and network isolation
+* Enforce resource limits and quotas
+* Lay the foundation for tools like Docker, Podman, and Kubernetes
+
+---
+
+
