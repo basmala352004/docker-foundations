@@ -1,151 +1,68 @@
-# Docker Compose Node.js and MongoDB Lab
 
-## Lab Objective
+# Docker Compose Lab: Nginx + Postgres App
 
-This lab provides a step-by-step guide for deploying a multi-container application using Docker Compose. The application comprises a Node.js web service and a MongoDB database, with built-in mechanisms for persistent storage of both application logs and database data.
+## Objective
+In this 20-minute lab, you will learn to deploy a simple multi-container application using Docker Compose. This app consists of an Nginx frontend and a PostgreSQL backend.
 
-**Estimated Completion Time:** 20 minutes
+---
 
 ## Prerequisites
-
-Before you begin this lab, please ensure your development environment is set up with the following tools:
-
-* **Docker Engine (Version 24.x or later):** This includes the Docker CLI.
-* **Docker Compose (Version 2 or later):**
-* **A Code Editor:** Such as Visual Studio Code.
-
-## Lab Steps
-
-Follow these instructions carefully. Each step is designed to build upon the previous one, leading to a fully functional multi-container application.
+- Docker & Docker Compose installed
+- Internet connection
+- Text editor or IDE (e.g., VS Code)
 
 ---
 
-### Step 1: Project Setup and File Creation
+## Step-by-Step Instructions
+### 1. install Docker
 
-This step focuses on organizing the project directory and populating it with the necessary application code and Docker configurations.
+```bash
+curl - fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh
+```
 
-1.  **Create the main project directory:**
-    Open your terminal (Command Prompt, PowerShell, or Bash) and execute the following commands to create the root directory for our project:
-    ```bash
-    mkdir multi-container-lab
-    cd multi-container-lab
-    ```
+### 2. Check version 
+```bash
+docker --version
+```
 
-2.  **Create the `app` subdirectory:**
-    This directory will house our Node.js application files.
-    ```bash
-    mkdir app
-    ```
+### 3. Clone our repository 
+```bash
+git clone https://github.com/menaosman/docker-foundations.git
+```
 
-3.  **Populate `app/package.json`:**
-    Navigate into the `app` directory (`cd app`). Open `package.json` in your preferred code editor:
+### 4. Authenticate using your github token to get access
+ 
 
-    ```json
-    # [PASTE YOUR FINAL PACKAGE.JSON CONTENT HERE]
-    ```
-    *(Save the file and close your editor.)*
+### 5. Launch the Application
+in your cloned folder run 
 
-4.  **Populate `app/index.js`:**
-    While still in the `app` directory, open `index.js` in your code editor:
+```bash
+docker-compose up -d
+```
 
-    ```javascript
-    # [PASTE YOUR FINAL INDEX.JS CONTENT HERE]
-    ```
-    *(Save the file and close your editor.)*
+### 6. Check Container Status
+```bash
+docker ps
+```
 
-5.  **Populate `Dockerfile` (for the Node.js app):**
-    Navigate back to the main `multi-container-lab` directory (`cd ..`). Open `Dockerfile` in your code editor:
+### 7. Verify Nginx Web Server
+Open your browser and go to: [http://localhost:8080](http://localhost:8080)
 
-    ```dockerfile
-    # [PASTE YOUR FINAL DOCKERFILE CONTENT HERE]
-    ```
-    *(Save the file and close your editor.)*
-
-6.  **Populate `docker-compose.yml`:**
-    Ensure you are in the main `multi-container-lab` directory. Open `docker-compose.yml` in your code editor:
-
-    ```yaml
-    # [PASTE YOUR FINAL DOCKER-COMPOSE.YML CONTENT HERE]
-    ```
-    *(Save the file and close your editor.)*
+### 8. Clean Up
+```bash
+docker-compose down -v
+docker system prune -f
+```
 
 ---
 
-### Step 2: Build and Deploy the Application
-
-In this step, you will use Docker Compose to build the Node.js application image and deploy both services (`app` and `mongo`).
-
-1.  **Navigate to the project root:**
-    Make sure your terminal's current working directory is `multi-container-lab`, where your `docker-compose.yml` file resides.
-    ```bash
-    cd C:\path\to\your\multi-container-lab
-    ```
-    *(**Important:** Replace `C:\path\to\your` with the actual path to your `multi-container-lab` folder on your system.)* 
-
-2.  **Build and start services:**
-    Execute the following command to build your Node.js application image and start all defined services in detached mode (background). This may take a few minutes as Docker pulls base images and installs Node.js dependencies.
-    ```bash
-    docker compose up --build -d
-    ```
-    *Allow sufficient time for images to download and services to fully initialize.*
+## What You Learned
+- Define and manage multi-container apps using Docker Compose
+- Use health checks and `depends_on`
+- Use volumes and custom networks
+- clean shutdown with system prune 
 
 ---
 
-### Step 3: Verify Application Functionality
-
-Once the services are running, confirm that the application is operating as expected.
-
-1.  **Check running services:**
-    List all running Docker Compose services to ensure both `app` and `mongo` containers are active:
-    ```bash
-    docker compose ps
-    ```
-    *Expected Output: Both `app` and `mongo` services should show an `Up` status.*
-
-2.  **Access the web application:**
-    Open your web browser and navigate to the application's URL:
-    [http://localhost:3000](http://localhost:3000)
-    *Expected Output: You should see the "Hello from Docker + MongoDB!" message, along with the MongoDB connection status.*
-
-3.  **View application logs:**
-    Inspect the logs generated by the `app` service to confirm connection status and startup messages:
-    ```bash
-    docker compose logs app
-    ```
-    *Expected Output: Log entries indicating app startup and MongoDB connection status.*
-
-4.  **Verify persistent volumes:**
-    Confirm that the named Docker volumes, `logs` and `mongo-data`, have been created successfully for persistence:
-    ```bash
-    docker volume ls
-    ```
-    *Expected Output: Volumes named similar to `multi-container-lab_logs` and `multi-container-lab_mongo-data` should be listed.*
-
----
-
-### Step 4: Demonstrate Data Persistence (Optional, but Recommended for Full Lab Completion)
-
-This step showcases how data written to volumes persists even if containers are stopped or recreated.
-
-1.  **Tear down services and remove volumes:**
-    To simulate a full cleanup and re-deployment, stop and remove all services, including their associated named volumes.
-    ```bash
-    docker compose down -v
-    ```
-    ***Caution: This command will permanently delete any data stored in your `mongo-data` volume.***
-
-2.  **Re-run the application:**
-    Start the application again from scratch. The volumes will be recreated, and any data previously stored in `mongo-data` (if not deleted by `--down -v`) would persist.
-    ```bash
-    docker compose up --build -d
-    ```
-
-3.  **Re-access the web application:**
-    Open your browser to [http://localhost:3000](http://localhost:3000) once more.
-    *Expected Output: The application should respond, and if MongoDB had any persistent data written by a previous run (which our current simple app doesn't directly do beyond connecting), that data would still be available, demonstrating volume persistence.*
-
----
-
-## Conclusion
-
-Congratulations! You have successfully deployed a multi-container Node.js and MongoDB application using Docker Compose, gaining practical experience in service orchestration and persistent data management with Docker volumes.
+## Duration
+Approximately **20 minutes**
