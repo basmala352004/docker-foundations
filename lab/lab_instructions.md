@@ -12,7 +12,7 @@ Before you begin this lab, please ensure your development environment is set up 
 
 * **Docker Engine (Version 24.x or later):** This includes the Docker CLI.
 * **Docker Compose (Version 2 or later):**
-* **A Code Editor:** Such as Visual Studio Code, Notepad++, or cursor.
+* **A Code Editor:** Such as Visual Studio Code, Notepad++, or Cursor.
 
 ## Lab Steps
 
